@@ -1,4 +1,4 @@
-**RocketMQ Extended Services —— Nozdormu **
+**RocketMQ Extended Services —— Nozdormu**
 
 Nozdormu is an extension service to serve Rocket MQ (open source version) , mainly for the enrichment of the message delay level , support for arbitrary time message delay . The project is based on Spring boot, using Mysql as a persistence solution , the use of Redission to achieve a delayed queue and distributed lock . nozdormu supports multi-node deployment .
 
