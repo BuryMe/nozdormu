@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/delay?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&useSSL=false
+    username: username
+    password: password
+  jdbctemplate:
+    fetch-size: -1
+    max-rows: -1
+
+  redis:
+    password: nTDnELCqwF9DCb9
+    cluster:
+      nodes: localhost:9000,localhost:9001,localhost:9003,localhost:9004
+    lettuce:
+      pool:
+        max-idle: 16
+        max-active: 32
+        min-idle: 8
+        max-wait: 5000
+        time-between-eviction-runs: 1
+
+# Receiving delayed messages mq config
+receiveMq:
+  consumer:
+    group: receive_group
+    topic: receive_topic
+
+mock:
+  push: 1
+
+queue:
+  size: 4
+
+# push mq cofnig
+rocketmq:
+  name-server: localhost:9876
+  producer:
+    group: push_group
+    sendMessageTimeout: 30000
