@@ -10,5 +10,4 @@ public class NozdormuApplication {
         SpringApplication.run(NozdormuApplication.class, args);
     }
 
-
 }
