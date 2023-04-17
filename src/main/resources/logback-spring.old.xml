@@ -1,0 +1,35 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<configuration>-->
+
+<!--    &lt;!&ndash;<include resource="org/springframework/boot/logging/logback/base.xml"/>&ndash;&gt;-->
+
+<!--    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>-->
+<!--    &lt;!&ndash;<include resource="org/springframework/boot/logging/logback/console-appender.xml"/>&ndash;&gt;-->
+<!--    &lt;!&ndash;<include resource="org/springframework/boot/logging/logback/file-appender.xml" />&ndash;&gt;-->
+
+<!--    <springProperty scope="context" name="appName" source="spring.application.name"/>-->
+
+<!--    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <pattern>${CONSOLE_LOG_PATTERN}</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+<!--    <appender name="logFile" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        <file>${LOG_PATH}/${appName}.log</file>-->
+<!--        <encoder>-->
+<!--            <pattern>${FILE_LOG_PATTERN}</pattern>-->
+<!--        </encoder>-->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+<!--            <fileNamePattern>-->
+<!--                ${LOG_PATH}/%d{yyyy-MM-dd}.%i.log-->
+<!--            </fileNamePattern>-->
+<!--            <maxFileSize>20MB</maxFileSize>-->
+<!--        </rollingPolicy>-->
+<!--    </appender>-->
+
+<!--    <root level="INFO">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--        <appender-ref ref="logFile"/>-->
+<!--    </root>-->
+<!--</configuration>-->
