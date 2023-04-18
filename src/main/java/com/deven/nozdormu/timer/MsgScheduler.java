@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Component
-public class ScheduleService {
+public class MsgScheduler {
 
     private static final Long PERIOD = 60 * 1000 * 1000L;
 

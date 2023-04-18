@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
-public class ReceiveService {
+public class ReceiveHandler {
 
     @Autowired
     private JdbcManager jdbcManager;

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/delay?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&useSSL=false
-    username: username
-    password: password
+    url: jdbc:mysql://mysql-local-master.dlab.cn:3306/delay?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: aa6655321
   jdbctemplate:
     fetch-size: -1
     max-rows: -1
@@ -10,7 +10,7 @@ spring:
   redis:
     password: nTDnELCqwF9DCb9
     cluster:
-      nodes: localhost:9000,localhost:9001,localhost:9003,localhost:9004
+      nodes: test-redis-1.dlab.cn:9000,test-redis-1.dlab.cn:9001,test-redis-3.dlab.cn:9000,test-redis-3.dlab.cn:9001,test-redis-2.dlab.cn:9000,test-redis-2.dlab.cn:9001
     lettuce:
       pool:
         max-idle: 16
@@ -19,11 +19,17 @@ spring:
         max-wait: 5000
         time-between-eviction-runs: 1
 
-# Receiving delayed messages mq config
-receiveMq:
+
+#  RocketMQProperties
+rocketmq:
+  name-server: 192.168.4.34:9876
   consumer:
-    group: receive_group
-    topic: receive_topic
+    group: mpzdormu_receive_group
+    topics: mpzdormu_topic
+  producer:
+    group: mpzdormu_server
+    sendMessageTimeout: 30000
+
 
 mock:
   push: 1
@@ -31,9 +37,3 @@ mock:
 queue:
   size: 4
 
-# push mq cofnig
-rocketmq:
-  name-server: localhost:9876
-  producer:
-    group: push_group
-    sendMessageTimeout: 30000

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class StartApp implements CommandLineRunner {
 
     @Autowired
-    private ScheduleService scheduleService;
+    private MsgScheduler scheduleService;
 
     @Override
     public void run(String... args) {
