@@ -1,9 +1,20 @@
 package com.deven.nozdormu.timer;
 
+import io.netty.util.HashedWheelTimer;
+import jodd.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplicationRunListener;
+import org.springframework.core.SpringProperties;
 import org.springframework.stereotype.Component;
+import sun.lwawt.macosx.CSystemTray;
+
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author seven up
@@ -11,16 +22,27 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class StartApp implements CommandLineRunner {
+public class StartApp implements ApplicationRunner {
 
     @Autowired
     private MsgScheduler scheduleService;
 
+    @Autowired
+    private Playground playground;
+
     @Override
-    public void run(String... args) {
+    public void run(ApplicationArguments args) throws Exception {
+        long start = System.currentTimeMillis();
+        long end = start + 60000;
+        SpringProperties.setProperty("start", String.valueOf(start));
+        SpringProperties.setProperty("end", String.valueOf(end));
 
-        scheduleService.run();
+        ThreadFactory namedFactory = new ThreadFactoryBuilder().setNameFormat("wheelTimer").get();
+        HashedWheelTimer wheelTimer = new HashedWheelTimer(namedFactory, 100, TimeUnit.MILLISECONDS,
+                600, false);
 
+//        scheduleService.run();
+        playground.run(wheelTimer);
     }
 
 
