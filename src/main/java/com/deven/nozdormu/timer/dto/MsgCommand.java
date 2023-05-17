@@ -24,12 +24,6 @@ public class MsgCommand {
     private Long expectPushTime;
 
 
-    public Boolean verify(){
-        boolean can = StringUtils.hasText(uniqueKey)
-                && StringUtils.hasText(pushBody)
-                && StringUtils.hasText(pushTopic)
-                && StringUtils.hasText(pushTag);
-        return can;
-    }
+
 
 }

@@ -1,7 +1,7 @@
 package com.deven.nozdormu;
 
 import com.deven.nozdormu.timer.JdbcManager;
-import com.deven.nozdormu.timer.ReceiveHandler;
+import com.deven.nozdormu.timer.MsgReceiver;
 import com.deven.nozdormu.timer.dto.MsgCommand;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +21,7 @@ class ArchimondeApplicationTests {
     JdbcManager receiveMsgDao;
 
     @Resource
-    private ReceiveHandler receiveService;
+    private MsgReceiver receiveService;
 
     @Test
     public void startTest() {
