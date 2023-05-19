@@ -4,7 +4,7 @@ package com.deven.nozdormu.timer;
 //import com.deven.nozdormu.timer.config.CommonConfig;
 import com.deven.nozdormu.timer.dto.MsgCommand;
 import com.deven.nozdormu.timer.dto.ReceiveMsg;
-import com.deven.nozdormu.timer.dto.StatueEnums;
+import com.deven.nozdormu.timer.dto.StatusEnums;
 import io.netty.util.HashedWheelTimer;
 import lombok.extern.slf4j.Slf4j;
 //import org.apache.commons.lang3.RandomUtils;
@@ -41,7 +41,7 @@ public class MsgReceiver {
 
         long currentTime = Instant.now().toEpochMilli();
         ReceiveMsg receiveMsg = new ReceiveMsg(currentTime, msgCommand);
-        receiveMsg.setStatue(StatueEnums.BEEN_PERSISTENT.getStatue());
+        receiveMsg.setStatus(StatusEnums.BEEN_PERSISTENT.getStatus());
         jdbcManager.insertReceiveMsg(receiveMsg);
 
         Long expectPushTime = msgCommand.getExpectPushTime();

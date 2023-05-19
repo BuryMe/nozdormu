@@ -26,7 +26,7 @@ public class ReceiveMsg {
 
     private Long id;
     private Long createTime;
-    private Integer statue;
+    private Integer status;
     private String resp;
     private Long realPushTime;
 
@@ -37,7 +37,11 @@ public class ReceiveMsg {
         this.pushTopic = command.getPushTopic();
         this.pushTag = command.getPushTag();
         this.expectPushTime = command.getExpectPushTime();
-        this.statue = StatueEnums.BEEN_PERSISTENT.getStatue();
+        this.status = StatusEnums.BEEN_PERSISTENT.getStatus();
+    }
+
+    public ReceiveMsg(){
+
     }
 
 

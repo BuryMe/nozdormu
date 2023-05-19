@@ -1,10 +1,7 @@
 package com.deven.nozdormu.timer;
 
-import cn.hutool.core.thread.ThreadFactoryBuilder;
 import com.deven.nozdormu.timer.dto.ReceiveMsg;
 import io.netty.util.HashedWheelTimer;
-import io.netty.util.Timeout;
-import io.netty.util.TimerTask;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,12 +9,8 @@ import org.springframework.core.SpringProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -48,8 +41,9 @@ public class MsgScheduler {
             SpringProperties.setProperty("start", end.toString());
             SpringProperties.setProperty("end", String.valueOf(end + 60000));
 
-            log.info("----- schedule start:{},end:{} , data start:{},end:{} ------",
-                    paresTime(start), paresTime(end), paresTime(start - 60000), paresTime(end));
+//            log.info("----- schedule start:{},end:{} , data start:{},end:{} ------",
+//                    DateUtils.parseTime(start), DateUtils.parseTime(end),
+//                    DateUtils.parseTime(start - 60000), DateUtils.parseTime(end));
             List<ReceiveMsg> receiveMsgList = jdbcManager.selectPersistentMsgList(start - 60000, end);
             if (!CollectionUtils.isEmpty(receiveMsgList)) {
                 for (ReceiveMsg receiveMsg : receiveMsgList) {
@@ -59,12 +53,6 @@ public class MsgScheduler {
             }
 
         }, 0, 60, TimeUnit.SECONDS);
-    }
-
-    public String paresTime(Long timestamp) {
-        Date date = new Date(timestamp);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.format(date);
     }
 
 

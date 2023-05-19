@@ -1,12 +1,18 @@
 package com.deven.nozdormu;
 
+import cn.hutool.json.JSONUtil;
 import com.deven.nozdormu.timer.JdbcManager;
 import com.deven.nozdormu.timer.MsgReceiver;
+import com.deven.nozdormu.timer.WebController;
 import com.deven.nozdormu.timer.dto.MsgCommand;
+import com.deven.nozdormu.timer.dto.PageCmd;
+import com.deven.nozdormu.timer.dto.PageVO;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Random;
 
 @SpringBootTest
@@ -40,16 +46,15 @@ class ArchimondeApplicationTests {
         }
     }
 
+    @Autowired
+    private WebController webController;
+
     @Test
     public void testDao() {
-//        ReceiveMsg msg = new ReceiveMsg();
-//        msg.setUniqueKey("1");
-//        msg.setReceiveTime(System.currentTimeMillis());
-//        msg.setPushBody("11");
-//        msg.setPushTopic("1");
-//        msg.setPushTag("1");
-//        msg.setDelayConsumingTime(System.currentTimeMillis());
-//        receiveMsgDao.insert(msg);
+        PageCmd cmd = new PageCmd();
+        cmd.setUniqueKey("5809");
+        List<PageVO> page = webController.page(cmd);
+        System.out.println(JSONUtil.toJsonStr(page));
     }
 
 }

@@ -10,7 +10,7 @@ create table receive_msg
     push_topic       varchar(128)                        not null,
     expect_push_time bigint(13)                          not null,
     create_time      timestamp default CURRENT_TIMESTAMP not null,
-    statue           int                                 not null,
+    status           int                                 not null,
     resp             varchar(512)                        null,
     real_push_time   bigint(13)                          null,
     constraint receive_msg_unique_key_uindex

@@ -3,10 +3,12 @@ package com.deven.nozdormu.timer;
 import com.alibaba.fastjson.JSON;
 import com.deven.nozdormu.timer.dto.MsgCommand;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.spring.annotation.ConsumeMode;
 import org.apache.rocketmq.spring.annotation.MessageModel;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
+import org.apache.rocketmq.spring.core.RocketMQPushConsumerLifecycleListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -19,12 +21,12 @@ import org.springframework.util.StringUtils;
 @Slf4j
 @Component
 @RocketMQMessageListener(
-        topic = "${rocketmq.consumer.topics}",
-        consumerGroup = "${rocketmq.consumer.group}",
+        topic = "mpzdormu_topic",
+        consumerGroup = "mpzdormu_consumers",
         consumeMode = ConsumeMode.CONCURRENTLY,
         messageModel = MessageModel.CLUSTERING
 )
-public class MqListener implements RocketMQListener<String> {
+public class MqListener implements RocketMQListener<String>, RocketMQPushConsumerLifecycleListener {
 
     @Autowired
     private MsgReceiver receiveService;
@@ -44,4 +46,8 @@ public class MqListener implements RocketMQListener<String> {
 
     }
 
+    @Override
+    public void prepareStart(DefaultMQPushConsumer consumer) {
+        consumer.setInstanceName(String.valueOf(System.currentTimeMillis()));
+    }
 }
