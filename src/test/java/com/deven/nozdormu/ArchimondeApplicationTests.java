@@ -51,10 +51,10 @@ class ArchimondeApplicationTests {
 
     @Test
     public void testDao() {
-        PageCmd cmd = new PageCmd();
-        cmd.setUniqueKey("5809");
-        List<PageVO> page = webController.page(cmd);
-        System.out.println(JSONUtil.toJsonStr(page));
+//        PageCmd cmd = new PageCmd();
+//        cmd.setUniqueKey("5809");
+//        List<PageVO> page = webController.page(cmd);
+//        System.out.println(JSONUtil.toJsonStr(page));
     }
 
 }

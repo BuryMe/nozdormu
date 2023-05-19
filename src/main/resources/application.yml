@@ -1,8 +1,11 @@
+server:
+  port: 8081
+
 spring:
   datasource:
-    url: jdbc:mysql://xxx.xxx.xxx.xx:3306/delay?allowPublicKeyRetrieval=true&useSSL=false
-    username: root
-    password: xxxx
+    url: jdbc:mysql://{db.host}:{db.port}/{db.schema}?allowPublicKeyRetrieval=true&useSSL=false
+    username: { db.username }
+    password: { db.password }
 
   jdbc:
     template:
@@ -17,7 +20,8 @@ spring:
 
 #  RocketMQProperties
 rocketmq:
-  name-server: xxx.xxx.xxx.xx:9876
+  name-server: {mq.namesrv}
+#  name-server: "124.220.184.17:9876"
   producer:
     group: mpzdormu_server
     sendMessageTimeout: 30000
