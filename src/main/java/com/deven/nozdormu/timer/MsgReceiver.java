@@ -2,6 +2,7 @@ package com.deven.nozdormu.timer;
 
 //import com.alibaba.fastjson.JSON;
 //import com.deven.nozdormu.timer.config.CommonConfig;
+
 import com.deven.nozdormu.timer.dto.MsgCommand;
 import com.deven.nozdormu.timer.dto.ReceiveMsg;
 import com.deven.nozdormu.timer.dto.StatusEnums;
@@ -50,13 +51,10 @@ public class MsgReceiver {
             return;
         }
 
-        String nextStart = SpringProperties.getProperty("start");
-        Long nextStartTime = Long.valueOf(nextStart);
-        if (expectPushTime >= nextStartTime) {
-            //
-        } else {
-            long l = expectPushTime - Instant.now().toEpochMilli();
-            wheelTimer.newTimeout(timeout -> mqProducer.sendMessageAsync(receiveMsg), l, TimeUnit.MILLISECONDS);
+        long l1 = expectPushTime - currentTime;
+        if (l1 <= 60000) {
+            wheelTimer.newTimeout(timeout -> mqProducer.sendMessageAsync(receiveMsg), l1, TimeUnit.MILLISECONDS);
+            mqProducer.sendMessageAsync(receiveMsg);
         }
 
     }

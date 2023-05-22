@@ -41,10 +41,9 @@ public class MsgScheduler {
             SpringProperties.setProperty("start", end.toString());
             SpringProperties.setProperty("end", String.valueOf(end + 60000));
 
-//            log.info("----- schedule start:{},end:{} , data start:{},end:{} ------",
-//                    DateUtils.parseTime(start), DateUtils.parseTime(end),
-//                    DateUtils.parseTime(start - 60000), DateUtils.parseTime(end));
-            List<ReceiveMsg> receiveMsgList = jdbcManager.selectPersistentMsgList(start - 60000, end);
+            log.info("----- schedule start:{},end:{}  ------",
+                    DateUtils.parseTime(start), DateUtils.parseTime(end));
+            List<ReceiveMsg> receiveMsgList = jdbcManager.selectPersistentMsgList(start, end);
             if (!CollectionUtils.isEmpty(receiveMsgList)) {
                 for (ReceiveMsg receiveMsg : receiveMsgList) {
                     long l = receiveMsg.getExpectPushTime() - System.currentTimeMillis();

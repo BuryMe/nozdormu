@@ -4,7 +4,9 @@ WORKDIR /app/
 RUN mvn clean package -DskipTests
 
 FROM openjdk:8-jre-alpine
-COPY --from=build /app/target/*.jar nozdormu.jar
+VOLUME /tmp
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} nozdormu.jar
 COPY ./src/main/resources/application.yml /config/application.yml
 EXPOSE 8081
 ENV db.host=xxx.xxx.xxx.xx
