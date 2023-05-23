@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Component
-public class StartApp implements ApplicationRunner {
+public class StartUpApp implements ApplicationRunner {
 
     @Autowired
     private MsgScheduler msgScheduler;
