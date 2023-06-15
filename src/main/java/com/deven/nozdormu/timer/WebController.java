@@ -22,9 +22,8 @@ public class WebController {
     private JdbcManager jdbcManager;
 
     @RequestMapping("/index")
-    public String index(ModelMap map) {
+    public String index() {
         System.out.println("------ index ---------");
-//        map.addAttribute("newWorld","WELCOME TO NEW WORLD!!!");
         return "index";
     }
 
@@ -39,4 +38,11 @@ public class WebController {
 
         return jdbcManager.page(cmd);
     }
+
+
+
+
+
+
+
 }

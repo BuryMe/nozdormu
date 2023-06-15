@@ -15,6 +15,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * 借助mq集群消费模式，listener支持多机器分布式部署
+ *
  * @author seven up
  * @date 2023年04月10日 3:11 PM
  */

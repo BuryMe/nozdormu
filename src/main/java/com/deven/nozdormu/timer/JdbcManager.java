@@ -34,7 +34,7 @@ public class JdbcManager {
         String sql = "select *\n" +
                 "from receive_msg\n" +
                 "where expect_push_time between " + start + " and " + end + "\n" +
-                "and statue = 1;";
+                "and status = 1;";
         List<Map<String, Object>> maps = this.jdbcTemplate.queryForList(sql);
         return get(maps);
     }

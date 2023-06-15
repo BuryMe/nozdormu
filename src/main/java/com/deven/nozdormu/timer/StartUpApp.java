@@ -31,13 +31,13 @@ public class StartUpApp implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
         long start = System.currentTimeMillis();
-        long end = start + 60000;
+        long end = start + 10000;
         SpringProperties.setProperty("start", String.valueOf(start));
         SpringProperties.setProperty("end", String.valueOf(end));
 
         ThreadFactory namedFactory = new ThreadFactoryBuilder().setNamePrefix("wheelTimer").build();
         HashedWheelTimer wheelTimer = new HashedWheelTimer(namedFactory, 100, TimeUnit.MILLISECONDS,
-                600, false);
+                100, false);
 
         msgScheduler.run(wheelTimer);
     }

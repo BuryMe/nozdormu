@@ -52,7 +52,7 @@ public class MsgReceiver {
         }
 
         long l1 = expectPushTime - currentTime;
-        if (l1 <= 60000) {
+        if (l1 <= 10000) {
             wheelTimer.newTimeout(timeout -> mqProducer.sendMessageAsync(receiveMsg), l1, TimeUnit.MILLISECONDS);
             mqProducer.sendMessageAsync(receiveMsg);
         }

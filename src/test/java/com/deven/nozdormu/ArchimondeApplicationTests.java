@@ -10,6 +10,7 @@ import com.deven.nozdormu.timer.dto.PageVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -22,12 +23,19 @@ class ArchimondeApplicationTests {
     void contextLoads() {
     }
 
+    @Autowired
+    ApplicationContext applicationContext;
 
     @Resource
     JdbcManager receiveMsgDao;
 
     @Resource
     private MsgReceiver receiveService;
+
+    @Test
+    public void test0(){
+    }
+
 
     @Test
     public void startTest() {
